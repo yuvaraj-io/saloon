@@ -1,19 +1,6 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { SALON_INFO } from "@/data/salonData";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-  display: "swap",
-});
-
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-jakarta",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "MadFern | Luxury Unisex Salon, Lavelle Road, Bengaluru (4.8★)",
@@ -33,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "MadFern | Luxury Unisex Salon, Lavelle Road",
     description:
-      "Homely luxury Bangalore vibe. Interactive 3D Hairstyle & Face Shape Studio, Reddit-celebrated curly hair cuts, daylight color matching.",
+      "Homely luxury Bangalore vibe. Curated Hairstyle & Face Shape Studio, Reddit-celebrated curly hair cuts, daylight color matching.",
     type: "website",
     locale: "en_IN",
   },
@@ -75,8 +62,14 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${playfair.variable} ${jakarta.variable} scroll-smooth`}>
+    <html lang="en" className="scroll-smooth">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
