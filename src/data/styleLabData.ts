@@ -1,5 +1,13 @@
 import { HeadShape, HairTexture, HairstyleOption, HairColor } from '@/types/salon';
 
+export interface GeometricRatio {
+  foreheadWidth: string; // e.g. "Medium-Wide"
+  cheekboneProminence: string; // e.g. "High & Curved"
+  jawlineTaper: string; // e.g. "Chiseled 90°"
+  verticalRatio: string; // e.g. "1.5 : 1 (Elongated)"
+  goal: string; // e.g. "Softens angular corners & adds organic movement"
+}
+
 export interface HeadShapeInfo {
   id: HeadShape;
   title: string;
@@ -9,6 +17,7 @@ export interface HeadShapeInfo {
   featuresToHighlight: string[];
   recommendedStyleIds: string[];
   avoidStyles: string;
+  geometry: GeometricRatio;
 }
 
 export const HEAD_SHAPES: HeadShapeInfo[] = [
@@ -16,11 +25,18 @@ export const HEAD_SHAPES: HeadShapeInfo[] = [
     id: "oval",
     title: "Oval",
     subtitle: "Balanced & Symmetrical",
-    description: "Forehead slightly wider than the curved chin, with gently rounded cheekbones. Considered universally versatile.",
-    flatteringAdvice: "Natural facial balance allows you to pull off almost any silhouette—from voluminous curly shags to razor-sharp bobs and high-fade crops.",
-    featuresToHighlight: ["Harmonious proportions", "Defined jawline taper", "High cheekbones"],
-    recommendedStyleIds: ["curly-shag", "curly-fade-crop", "wavy-curtain-bob", "straight-glass-lob", "straight-crop-fringe", "gender-free-mullet"],
-    avoidStyles: "Avoid excessively tall spikes that unnecessarily lengthen the vertical axis."
+    description: "Forehead slightly wider than the curved chin, with gently rounded cheekbones. Universally versatile baseline.",
+    flatteringAdvice: "Natural facial symmetry allows you to pull off almost any silhouette—from voluminous curly shags to razor-sharp bobs, tapers, and textured fades.",
+    featuresToHighlight: ["Harmonious facial thirds", "Natural cheekbone taper", "Soft jaw contour"],
+    recommendedStyleIds: ["curly-shag", "curly-fade-crop", "wavy-curtain-bob", "straight-glass-lob", "straight-crop-fringe", "gender-free-mullet", "men-beard-sculpt", "women-balayage-waves"],
+    avoidStyles: "Avoid excessively tall spikes that unnecessarily lengthen the vertical axis.",
+    geometry: {
+      foreheadWidth: "Balanced (1.0x)",
+      cheekboneProminence: "Naturally Symmetrical (1.1x)",
+      jawlineTaper: "Softly Curved (0.85x)",
+      verticalRatio: "1.4 : 1 (Ideal Golden Ratio)",
+      goal: "Maintain natural facial balance without adding extreme vertical or horizontal distortion."
+    }
   },
   {
     id: "round",
@@ -28,19 +44,33 @@ export const HEAD_SHAPES: HeadShapeInfo[] = [
     subtitle: "Soft & Equal Width/Length",
     description: "Curved cheekbones and rounded chin with approximately equal facial width and length.",
     flatteringAdvice: "Styles with vertical crown volume, curtain bangs, or asymmetrical angles lengthen your face and give definition to soft contours.",
-    featuresToHighlight: ["Youthful contours", "Soft jawline", "Full cheeks"],
-    recommendedStyleIds: ["curly-fade-crop", "curly-shag", "wavy-textured-quiff", "straight-glass-lob"],
-    avoidStyles: "Avoid wide, horizontal chin-length blunt cuts with zero layers that exaggerate cheek width."
+    featuresToHighlight: ["Youthful full cheeks", "Soft jaw curvature", "Smooth temple planes"],
+    recommendedStyleIds: ["men-round-quiff", "women-round-lob", "curly-fade-crop", "curly-shag", "wavy-textured-quiff", "straight-glass-lob"],
+    avoidStyles: "Avoid wide, horizontal chin-length blunt cuts with zero layers that exaggerate cheek width.",
+    geometry: {
+      foreheadWidth: "Rounded & Broad (1.15x)",
+      cheekboneProminence: "Widest Plane (1.3x)",
+      jawlineTaper: "Soft Circular Arc (1.1x)",
+      verticalRatio: "1 : 1 (Equal Planes)",
+      goal: "Add vertical crown height (+30mm) while tapering sides to create an elongated oval illusion."
+    }
   },
   {
     id: "square",
     title: "Square",
     subtitle: "Strong Angular Jawline",
     description: "Broad forehead, prominent cheekbones, and a chiseled square jawline of equal width.",
-    flatteringAdvice: "Soft, organic curly ringlets, sweeping curtain bangs, and soft tapered layers visually soften strong jaw angles while honoring masculine/feminine bone structure.",
-    featuresToHighlight: ["Chiseled jaw", "Broad defined planes", "Distinct angles"],
-    recommendedStyleIds: ["curly-shag", "curly-cascade-long", "wavy-textured-quiff", "coily-sculpted-afro"],
-    avoidStyles: "Avoid geometric jaw-level blunt bobs that sit directly on your jaw corners."
+    flatteringAdvice: "Soft, organic curly ringlets, sweeping curtain bangs, and soft tapered layers visually soften strong jaw angles while honoring bone structure presence.",
+    featuresToHighlight: ["Chiseled mandibular jaw", "Broad masculine/defined planes", "Distinct architectural corners"],
+    recommendedStyleIds: ["curly-shag", "curly-cascade-long", "wavy-textured-quiff", "coily-sculpted-afro", "men-beard-sculpt", "women-balayage-waves"],
+    avoidStyles: "Avoid geometric jaw-level blunt bobs that sit directly on your jaw corners.",
+    geometry: {
+      foreheadWidth: "Broad Angular (1.25x)",
+      cheekboneProminence: "Planar Structure (1.2x)",
+      jawlineTaper: "Chiseled 90° Corners (1.25x)",
+      verticalRatio: "1.1 : 1 (Broad & Powerful)",
+      goal: "Introduce organic curves and soft circular curls to diffuse sharp 90° mandibular corners."
+    }
   },
   {
     id: "heart",
@@ -48,9 +78,16 @@ export const HEAD_SHAPES: HeadShapeInfo[] = [
     subtitle: "Wide Forehead & Tapered Chin",
     description: "Wider temples and high cheekbones tapering sharply down into a delicate or pointed chin.",
     flatteringAdvice: "Chin-length textured bobs, collarbone waves, or low side volume create equilibrium by filling the narrower jaw area.",
-    featuresToHighlight: ["Striking cheekbones", "Delicate chin", "Sculpted forehead"],
-    recommendedStyleIds: ["wavy-curtain-bob", "curly-fade-crop", "straight-glass-lob", "gender-free-mullet"],
-    avoidStyles: "Avoid heavy top-heavy crown height with slicked flat sides that exaggerate upper width."
+    featuresToHighlight: ["Striking high cheekbones", "Delicate chin taper", "Sculpted forehead plane"],
+    recommendedStyleIds: ["wavy-curtain-bob", "curly-fade-crop", "straight-glass-lob", "gender-free-mullet", "women-balayage-waves"],
+    avoidStyles: "Avoid heavy top-heavy crown height with slicked flat sides that exaggerate upper width.",
+    geometry: {
+      foreheadWidth: "Prominent & Broad (1.35x)",
+      cheekboneProminence: "High Focal Points (1.2x)",
+      jawlineTaper: "Sharply Pointed (0.6x)",
+      verticalRatio: "1.3 : 1 (Tapered Wedge)",
+      goal: "Add horizontal perimeter volume directly adjacent to the chin and neck to counterbalance wide temples."
+    }
   },
   {
     id: "diamond",
@@ -58,9 +95,16 @@ export const HEAD_SHAPES: HeadShapeInfo[] = [
     subtitle: "Dramatic High Cheekbones",
     description: "Widest at the cheekbones with a narrow forehead and narrow pointed jaw.",
     flatteringAdvice: "Mid-length voluminous curls, curtain bangs, and layered fades bring optical balance to temples and chin.",
-    featuresToHighlight: ["High dramatic cheekbones", "Cat-eye focal points", "Defined temple line"],
-    recommendedStyleIds: ["curly-shag", "curly-cascade-long", "straight-crop-fringe", "wavy-curtain-bob"],
-    avoidStyles: "Avoid slicked-back styles without face-framing pieces."
+    featuresToHighlight: ["Dramatic high cheekbones", "Cat-eye focal points", "Defined temple lines"],
+    recommendedStyleIds: ["curly-shag", "curly-cascade-long", "straight-crop-fringe", "wavy-curtain-bob", "gender-free-mullet"],
+    avoidStyles: "Avoid slicked-back styles without face-framing pieces.",
+    geometry: {
+      foreheadWidth: "Narrow Tapered (0.8x)",
+      cheekboneProminence: "Widest Architectural Apex (1.4x)",
+      jawlineTaper: "Delicate Point (0.7x)",
+      verticalRatio: "1.45 : 1 (Sculptural Diamond)",
+      goal: "Broaden both upper temples with bangs/fringes and lower jawline with textured flare."
+    }
   },
   {
     id: "oblong",
@@ -71,6 +115,14 @@ export const HEAD_SHAPES: HeadShapeInfo[] = [
     featuresToHighlight: ["Tall graceful profile", "Elegant neck balance", "Refined symmetry"],
     recommendedStyleIds: ["curly-cascade-long", "wavy-curtain-bob", "straight-crop-fringe", "gender-free-mullet"],
     avoidStyles: "Avoid extreme vertical pompadours that add more vertical height."
+    ,
+    geometry: {
+      foreheadWidth: "Straight & Tall (1.0x)",
+      cheekboneProminence: "Consistent Width (1.0x)",
+      jawlineTaper: "Square-Rounded Base (0.95x)",
+      verticalRatio: "1.8 : 1 (Noticeably Long)",
+      goal: "Cut vertical forehead axis with horizontal fringes while generating lateral bounce to widen the silhouette."
+    }
   }
 ];
 
@@ -113,11 +165,11 @@ export const HAIR_COLORS: HairColor[] = [
 ];
 
 export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
-  // 1. Signature Curly Shag
+  // 1. Signature Curly Shag (Women / Unisex)
   {
     id: "curly-shag",
     name: "MadFern Signature Curly Shag",
-    gender: "unisex",
+    gender: "women",
     texture: "curly",
     length: "medium",
     bestHeadShapes: ["oval", "square", "round", "diamond"],
@@ -128,11 +180,11 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     serviceIdRef: "srv-curly-signature",
     estimatedTime: "75 mins",
     price: 2400,
-    imageUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/hairstyles/women_curly_shag.jpg",
     galleryImages: [
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1584297091622-af8e5bd81b21?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80"
+      "/images/hairstyles/women_curly_shag.jpg",
+      "/images/hairstyles/women_long_curls.jpg",
+      "/images/hairstyles/unisex_wolf_cut.jpg"
     ],
     faceShapeSuitability: {
       oval: "Universally harmonious. Highlights eye line and cheekbones with bouncy natural symmetry.",
@@ -144,7 +196,7 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     }
   },
 
-  // 2. Modern Curly Taper Fade
+  // 2. Modern Curly Taper Fade (Men)
   {
     id: "curly-fade-crop",
     name: "Modern Curly Taper Fade",
@@ -159,11 +211,11 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     serviceIdRef: "srv-cut-men",
     estimatedTime: "45 mins",
     price: 1400,
-    imageUrl: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/hairstyles/men_curly_fade.jpg",
     galleryImages: [
-      "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80"
+      "/images/hairstyles/men_curly_fade.jpg",
+      "/images/hairstyles/men_crop_fringe.jpg",
+      "/images/hairstyles/men_wavy_quiff.jpg"
     ],
     faceShapeSuitability: {
       oval: "Sharp clean edges provide high contrast against symmetrical proportions.",
@@ -175,7 +227,69 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     }
   },
 
-  // 3. Botanical Cascade Curly Layers
+  // 3. High-Volume Textured Quiff Fade (Men - Round / Oval Face Specialist)
+  {
+    id: "men-round-quiff",
+    name: "Vertical Architectural Quiff & Fade",
+    gender: "men",
+    texture: "wavy",
+    length: "medium",
+    bestHeadShapes: ["round", "square", "oval"],
+    description: "Engineered specifically for round and broad jaw silhouettes. Adds +35mm vertical elevation at the crown while tight low fade chisels the cheeks.",
+    stylingTip: "Blow-dry upwards with round vent brush, lock texture with botanical matte clay.",
+    maintenanceLevel: "Low",
+    recommendedStylist: "Arbaaz (Master Barber)",
+    serviceIdRef: "srv-cut-men",
+    estimatedTime: "45 mins",
+    price: 1500,
+    imageUrl: "/images/hairstyles/men_round_quiff.jpg",
+    galleryImages: [
+      "/images/hairstyles/men_round_quiff.jpg",
+      "/images/hairstyles/men_curly_fade.jpg",
+      "/images/hairstyles/men_wavy_quiff.jpg"
+    ],
+    faceShapeSuitability: {
+      oval: "Bold executive height pairs cleanly with natural symmetry.",
+      round: "Ideal geometry correction: +35mm crown height visually counteracts equal width/length cheek ratio.",
+      square: "Sharp vertical lift balances heavy jawbone planes.",
+      heart: "Maintains balanced side taper without over-widening forehead.",
+      diamond: "Draws visual focal point straight up from narrow chin.",
+      oblong: "Reduce crown height slightly to avoid over-lengthening."
+    }
+  },
+
+  // 4. Asymmetrical Curtain Wavy Lob (Women - Round / Heart Face Specialist)
+  {
+    id: "women-round-lob",
+    name: "Contouring Curtain Wavy Lob",
+    gender: "women",
+    texture: "wavy",
+    length: "medium",
+    bestHeadShapes: ["round", "heart", "square", "oval"],
+    description: "Designed specifically to contour round and soft cheekbones. Features an asymmetrical center drape, jawline-grazing waves, and face-slimming curtain fringe.",
+    stylingTip: "Apply sea kelp mist to damp curtain bangs, wrap around 1.25-inch brush away from face.",
+    maintenanceLevel: "Medium",
+    recommendedStylist: "Fern & Preethi",
+    serviceIdRef: "srv-cut-women",
+    estimatedTime: "60 mins",
+    price: 1900,
+    imageUrl: "/images/hairstyles/women_round_lob.jpg",
+    galleryImages: [
+      "/images/hairstyles/women_round_lob.jpg",
+      "/images/hairstyles/women_wavy_bob.jpg",
+      "/images/hairstyles/women_balayage_waves.jpg"
+    ],
+    faceShapeSuitability: {
+      oval: "Effortlessly drapes across cheekbones with romantic bounce.",
+      round: "Ideal geometry contour: Center curtain bangs visually halve horizontal cheek width for an instant slimming taper.",
+      square: "Curtain bangs soften square temple and jawline corners.",
+      heart: "Collarbone wave flare fills narrow space beside chin.",
+      diamond: "Soft curtain wings widen narrow forehead.",
+      oblong: "Provides mid-face fullness to soften vertical length."
+    }
+  },
+
+  // 5. Botanical Cascade Curly Layers (Women)
   {
     id: "curly-cascade-long",
     name: "Botanical Cascade Curly Layers",
@@ -190,11 +304,11 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     serviceIdRef: "srv-curly-signature",
     estimatedTime: "90 mins",
     price: 2800,
-    imageUrl: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/hairstyles/women_long_curls.jpg",
     galleryImages: [
-      "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1584297091622-af8e5bd81b21?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+      "/images/hairstyles/women_long_curls.jpg",
+      "/images/hairstyles/women_curly_shag.jpg",
+      "/images/hairstyles/women_balayage_waves.jpg"
     ],
     faceShapeSuitability: {
       oval: "Flowing curl tiers frame collarbones gracefully.",
@@ -206,7 +320,7 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     }
   },
 
-  // 4. French Wavy Bob with Curtain Bangs
+  // 6. French Wavy Bob with Curtain Bangs (Women)
   {
     id: "wavy-curtain-bob",
     name: "French Wavy Bob with Curtain Bangs",
@@ -221,11 +335,11 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     serviceIdRef: "srv-cut-women",
     estimatedTime: "60 mins",
     price: 1900,
-    imageUrl: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/hairstyles/women_wavy_bob.jpg",
     galleryImages: [
-      "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80"
+      "/images/hairstyles/women_wavy_bob.jpg",
+      "/images/hairstyles/women_balayage_waves.jpg",
+      "/images/hairstyles/women_glass_lob.jpg"
     ],
     faceShapeSuitability: {
       oval: "Accentuates neck length and balances brow-to-chin line.",
@@ -237,7 +351,7 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     }
   },
 
-  // 5. Textured Wavy Flow Quiff
+  // 7. Textured Wavy Flow Quiff (Men)
   {
     id: "wavy-textured-quiff",
     name: "Textured Wavy Flow Quiff",
@@ -252,11 +366,11 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     serviceIdRef: "srv-cut-men",
     estimatedTime: "45 mins",
     price: 1400,
-    imageUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/hairstyles/men_wavy_quiff.jpg",
     galleryImages: [
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80"
+      "/images/hairstyles/men_wavy_quiff.jpg",
+      "/images/hairstyles/men_beard_sculpt.jpg",
+      "/images/hairstyles/men_curly_fade.jpg"
     ],
     faceShapeSuitability: {
       oval: "Natural flow enhances facial symmetry.",
@@ -268,7 +382,38 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     }
   },
 
-  // 6. Architectural Glass Long Bob
+  // 8. Gentleman's Precision Scissor Cut & Beard Sculpt (Men)
+  {
+    id: "men-beard-sculpt",
+    name: "Gentleman's Precision Cut & Beard Sculpt",
+    gender: "men",
+    texture: "straight",
+    length: "short",
+    bestHeadShapes: ["square", "oval", "round", "diamond"],
+    description: "Arjun Nambiar review favorite! Bespoke scissor-over-comb tailored side part, hot towel beard contouring, and essential oil conditioning.",
+    stylingTip: "Comb neatly with sandalwood beard oil and flexible natural hold pomade.",
+    maintenanceLevel: "Low",
+    recommendedStylist: "Arbaaz (Barber Lead)",
+    serviceIdRef: "srv-cut-men",
+    estimatedTime: "50 mins",
+    price: 1600,
+    imageUrl: "/images/hairstyles/men_beard_sculpt.jpg",
+    galleryImages: [
+      "/images/hairstyles/men_beard_sculpt.jpg",
+      "/images/hairstyles/men_wavy_quiff.jpg",
+      "/images/hairstyles/men_crop_fringe.jpg"
+    ],
+    faceShapeSuitability: {
+      oval: "Clean contours accentuate bone structure effortlessly.",
+      round: "Sharp square beard outline chisels soft jawline.",
+      square: "Harmonizes with natural angular jawbone for executive presence.",
+      heart: "Beard bulk balances narrow pointed chin.",
+      diamond: "Beard fullness widens lower jaw.",
+      oblong: "Keeps sideburns blended to prevent elongating."
+    }
+  },
+
+  // 9. Architectural Glass Long Bob (Women)
   {
     id: "straight-glass-lob",
     name: "Architectural Glass Long Bob",
@@ -283,11 +428,11 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     serviceIdRef: "srv-cut-women",
     estimatedTime: "60 mins",
     price: 1900,
-    imageUrl: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/hairstyles/women_glass_lob.jpg",
     galleryImages: [
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80"
+      "/images/hairstyles/women_glass_lob.jpg",
+      "/images/hairstyles/women_wavy_bob.jpg",
+      "/images/hairstyles/unisex_wolf_cut.jpg"
     ],
     faceShapeSuitability: {
       oval: "Emphasizes sleek jawline with ultra-clean precision perimeter.",
@@ -299,7 +444,7 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     }
   },
 
-  // 7. Textured Crop with Micro-Fringe
+  // 10. Textured Crop with Micro-Fringe (Men)
   {
     id: "straight-crop-fringe",
     name: "Textured Crop with Micro-Fringe",
@@ -314,11 +459,11 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     serviceIdRef: "srv-cut-men",
     estimatedTime: "45 mins",
     price: 1400,
-    imageUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/hairstyles/men_crop_fringe.jpg",
     galleryImages: [
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80"
+      "/images/hairstyles/men_crop_fringe.jpg",
+      "/images/hairstyles/men_curly_fade.jpg",
+      "/images/hairstyles/men_beard_sculpt.jpg"
     ],
     faceShapeSuitability: {
       oval: "Highlights eyebrow ridge and temple proportions.",
@@ -330,11 +475,11 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     }
   },
 
-  // 8. Sculptural Halo Coily Crown
+  // 11. Sculptural Halo Coily Crown (Women / Unisex)
   {
     id: "coily-sculpted-afro",
     name: "Sculptural Halo Coily Crown",
-    gender: "unisex",
+    gender: "women",
     texture: "coily",
     length: "medium",
     bestHeadShapes: ["oval", "heart", "diamond", "square"],
@@ -345,11 +490,11 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     serviceIdRef: "srv-curly-signature",
     estimatedTime: "80 mins",
     price: 2500,
-    imageUrl: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/hairstyles/women_coily_halo.jpg",
     galleryImages: [
-      "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1523824921871-d6f1a15151f1?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1584297091622-af8e5bd81b21?auto=format&fit=crop&w=800&q=80"
+      "/images/hairstyles/women_coily_halo.jpg",
+      "/images/hairstyles/women_curly_shag.jpg",
+      "/images/hairstyles/women_long_curls.jpg"
     ],
     faceShapeSuitability: {
       oval: "Full geometric halo anchors facial symmetry.",
@@ -361,7 +506,7 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     }
   },
 
-  // 9. Botanical Soft Shaggy Wolf Cut
+  // 12. Botanical Soft Shaggy Wolf Cut (Unisex)
   {
     id: "gender-free-mullet",
     name: "Botanical Soft Shaggy Wolf Cut",
@@ -376,11 +521,11 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     serviceIdRef: "srv-cut-genderfree",
     estimatedTime: "60 mins",
     price: 1600,
-    imageUrl: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/hairstyles/unisex_wolf_cut.jpg",
     galleryImages: [
-      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+      "/images/hairstyles/unisex_wolf_cut.jpg",
+      "/images/hairstyles/women_curly_shag.jpg",
+      "/images/hairstyles/women_glass_lob.jpg"
     ],
     faceShapeSuitability: {
       oval: "Effortlessly edgy balance across all facial regions.",
@@ -392,7 +537,7 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     }
   },
 
-  // 10. Fern Natural Light Balayage Waves
+  // 13. Fern Natural Light Balayage Waves (Women)
   {
     id: "balayage-beach-waves",
     name: "Fern Daylight Honey Balayage Waves",
@@ -407,11 +552,11 @@ export const HAIRSTYLES_CATALOG: HairstyleOption[] = [
     serviceIdRef: "srv-color-fern",
     estimatedTime: "180 mins",
     price: 5800,
-    imageUrl: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/hairstyles/women_balayage_waves.jpg",
     galleryImages: [
-      "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=800&q=80"
+      "/images/hairstyles/women_balayage_waves.jpg",
+      "/images/hairstyles/women_wavy_bob.jpg",
+      "/images/hairstyles/women_long_curls.jpg"
     ],
     faceShapeSuitability: {
       oval: "Dimensional sunlit ribbons enhance skin luminosity.",
